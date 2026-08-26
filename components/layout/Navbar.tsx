@@ -27,6 +27,7 @@ export default function Navbar() {
     { name: "Services", href: "/services" },
     { name: "Work", href: "/work" },
     { name: "Events", href: "/events" },
+    { name: "Sponsors", href: "/sponsors" },
     { name: "Contact", href: "/contact" },
   ];
 
@@ -44,7 +45,7 @@ export default function Navbar() {
         <Link href="/" className="flex items-center space-x-3 group">
           <div className="relative h-10 w-auto min-w-[130px] flex items-center">
             <Image
-              src="/images/logo.png"
+              src="/images/logo-black.png"
               alt="MadProTek Corp Logo"
               width={160}
               height={44}

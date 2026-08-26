@@ -1,9 +1,9 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { portfolioData } from "@/data/portfolio";
 import { ArrowRight } from "lucide-react";
 import Container from "@/components/ui/Container";
-import SectionHeading from "@/components/ui/SectionHeading";
 import Button from "@/components/ui/Button";
 
 export default function WorkPage() {
@@ -12,15 +12,15 @@ export default function WorkPage() {
       {/* Hero Header */}
       <section className="py-20 lg:py-28 bg-brand-off-white border-b border-brand-border">
         <Container className="text-center max-w-4xl">
-          <span className="text-xs font-bold uppercase tracking-widest text-brand-black bg-brand-yellow px-3 py-1 rounded-full">
+          <span className="text-xs font-black uppercase tracking-widest text-brand-black bg-brand-yellow px-4 py-1.5 rounded-full inline-block mb-3">
             PORTFOLIO SHOWCASE
           </span>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-brand-black leading-tight tracking-tight mt-4">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-brand-black leading-tight tracking-tight">
             Selected Client <br />
             <span className="bg-brand-yellow px-2 py-0.5 inline-block text-brand-black">Engagements</span>
           </h1>
-          <p className="text-base sm:text-lg text-brand-gray max-w-2xl mx-auto leading-relaxed mt-4">
-            Explore our featured client work spanning software engineering, mobile platforms, visual brand design, and city-wide public event production.
+          <p className="text-base sm:text-lg text-brand-gray max-w-2xl mx-auto leading-relaxed mt-4 font-normal">
+            Explore our featured client software projects, healthcare portals, non-profit systems, and enterprise financial platforms.
           </p>
         </Container>
       </section>
@@ -32,29 +32,31 @@ export default function WorkPage() {
             {portfolioData.map((project) => (
               <div
                 key={project.id}
-                className="group flex flex-col justify-between rounded-3xl border border-brand-border p-6 sm:p-8 hover:border-brand-black transition-all duration-300 bg-brand-off-white"
+                className="group flex flex-col justify-between rounded-3xl border border-brand-border p-6 sm:p-8 hover:border-brand-black transition-all duration-300 bg-brand-off-white shadow-sm"
               >
                 <div className="space-y-4">
-                  {/* Thumbnail Banner */}
-                  <div className="h-64 w-full rounded-2xl bg-brand-black text-white flex flex-col items-center justify-center p-6 relative overflow-hidden">
-                    <div className="absolute inset-0 bg-grid-pattern-dark opacity-10" />
-                    <span className="text-xs font-bold uppercase tracking-widest text-brand-yellow relative z-10 mb-2">
+                  {/* Real Image Banner Showcase */}
+                  <div className="h-64 sm:h-72 w-full rounded-2xl bg-brand-black relative overflow-hidden shadow-sm">
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute top-4 left-4 px-3 py-1 rounded-md bg-brand-yellow text-brand-black text-[10px] font-black uppercase tracking-wider z-10 shadow-sm">
                       {project.category}
-                    </span>
-                    <h3 className="text-xl sm:text-2xl font-extrabold text-white text-center relative z-10">
-                      {project.title}
-                    </h3>
+                    </div>
                   </div>
 
                   {/* Copy Details */}
                   <div className="pt-2">
-                    <span className="text-xs font-bold uppercase tracking-widest text-brand-yellow-dark">
+                    <span className="text-xs font-extrabold uppercase tracking-widest text-brand-yellow-dark">
                       {project.client} • {project.year}
                     </span>
                     <h3 className="text-xl sm:text-2xl font-extrabold text-brand-black mt-1 mb-2">
                       {project.title}
                     </h3>
-                    <p className="text-sm text-brand-gray leading-relaxed">
+                    <p className="text-sm text-brand-gray leading-relaxed font-normal">
                       {project.description}
                     </p>
                   </div>

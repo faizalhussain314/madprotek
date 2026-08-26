@@ -1,8 +1,9 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { eventsData } from "@/data/events";
-import { Calendar, MapPin, ArrowLeft, Shield, Users, Compass } from "lucide-react";
+import { Calendar, MapPin, ArrowLeft, Shield, Users, Compass, Trophy } from "lucide-react";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 
@@ -26,11 +27,18 @@ export default async function EventDetailPage({ params }: PageProps) {
 
   return (
     <div className="flex flex-col min-h-screen">
-      {/* Event Header Hero */}
-      <section className="relative py-16 sm:py-24 bg-brand-black text-white overflow-hidden border-b border-brand-black-gray">
-        <div className="absolute inset-0 bg-grid-pattern-dark opacity-10" />
+      {/* 1. CINEMATIC EVENT HERO PHOTOGRAPHY */}
+      <section className="relative min-h-[65vh] lg:min-h-[550px] flex items-end pb-16 bg-brand-black text-white overflow-hidden border-b border-brand-black-gray">
+        <Image
+          src={event.image}
+          alt={event.title}
+          fill
+          priority
+          className="object-cover object-center opacity-50"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-brand-black via-brand-black/50 to-transparent z-10" />
 
-        <Container className="relative z-10">
+        <Container className="relative z-20 w-full">
           <Link
             href="/events"
             className="inline-flex items-center text-xs font-bold uppercase tracking-wider text-brand-muted hover:text-brand-yellow mb-6 group"
@@ -41,20 +49,22 @@ export default async function EventDetailPage({ params }: PageProps) {
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
             <div className="lg:col-span-8 space-y-4 text-left">
-              <span className="px-3 py-1 rounded-md text-[10px] font-black uppercase bg-brand-yellow text-brand-black shadow-sm">
-                {event.category}
-              </span>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-tight text-white">
+              <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-md text-[10px] font-black uppercase bg-brand-yellow text-brand-black">
+                <Trophy className="h-3.5 w-3.5" />
+                <span>{event.category}</span>
+              </div>
+
+              <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-tight text-white">
                 {event.title}
               </h1>
 
-              <div className="flex flex-wrap items-center gap-6 pt-2 text-xs sm:text-sm text-brand-muted">
+              <div className="flex flex-wrap items-center gap-6 text-xs sm:text-sm text-brand-muted pt-1 font-bold">
                 <div className="flex items-center space-x-2">
-                  <Calendar className="h-4.5 w-4.5 text-brand-yellow shrink-0" />
+                  <Calendar className="h-4 w-4 text-brand-yellow shrink-0" />
                   <span>{event.date}</span>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <MapPin className="h-4.5 w-4.5 text-brand-yellow shrink-0" />
+                  <MapPin className="h-4 w-4 text-brand-yellow shrink-0" />
                   <span>{event.location}</span>
                 </div>
               </div>
@@ -75,7 +85,7 @@ export default async function EventDetailPage({ params }: PageProps) {
         </Container>
       </section>
 
-      {/* Main Content */}
+      {/* 2. MAIN CONTENT + MASONRY EVENT GALLERY */}
       <section className="py-16 sm:py-20 bg-white">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
@@ -89,6 +99,44 @@ export default async function EventDetailPage({ params }: PageProps) {
                   {event.description}
                 </p>
               </div>
+
+              {/* MASONRY / EDITORIAL PHOTOGRAPHY GALLERY */}
+              {event.gallery && event.gallery.length > 0 && (
+                <div className="space-y-6">
+                  <div className="flex items-center justify-between pb-3 border-b border-brand-border">
+                    <h2 className="text-xl sm:text-2xl font-extrabold text-brand-black">
+                      Event Photography & Action Moments
+                    </h2>
+                    <span className="text-xs font-black text-brand-yellow-dark uppercase tracking-widest">
+                      LIVE MEDIA
+                    </span>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {event.gallery.map((img, idx) => (
+                      <div
+                        key={idx}
+                        className={`group relative rounded-2xl overflow-hidden bg-brand-black border border-brand-border h-64 ${
+                          idx === 0 ? "sm:col-span-2 h-80" : ""
+                        }`}
+                      >
+                        <Image
+                          src={img.src}
+                          alt={img.alt}
+                          fill
+                          className="object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-brand-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                        <div className="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          <span className="text-xs font-bold text-brand-yellow uppercase tracking-wider">
+                            {img.caption}
+                          </span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
 
               {/* Highlights */}
               <div className="space-y-4">

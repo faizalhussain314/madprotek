@@ -1,16 +1,20 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { eventsData } from "@/data/events";
-import { Calendar, MapPin, Search, ArrowRight } from "lucide-react";
+import { Calendar, MapPin, Search, ArrowRight, Sparkles, Trophy } from "lucide-react";
 import Container from "@/components/ui/Container";
+import Button from "@/components/ui/Button";
 
 export default function EventsPage() {
   const categories = ["All", "Marathons", "Adventure", "Off-Road", "Cricket", "Community", "Corporate"];
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
+
+  const featuredEvent = eventsData.find((e) => e.featured) || eventsData[0];
 
   const filteredEvents = eventsData.filter((event) => {
     const matchesCategory = selectedCategory === "All" || event.category === selectedCategory;
@@ -23,24 +27,105 @@ export default function EventsPage() {
 
   return (
     <div className="flex flex-col min-h-screen">
-      {/* Hero Header */}
-      <section className="py-20 lg:py-28 bg-brand-off-white border-b border-brand-border">
-        <Container className="text-center max-w-4xl">
-          <span className="text-xs font-bold uppercase tracking-widest text-brand-black bg-brand-yellow px-3 py-1 rounded-full">
-            MADPROTEK EVENTS
-          </span>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-brand-black leading-tight tracking-tight mt-4">
-            Events That Create <br />
-            <span className="bg-brand-yellow px-2 py-0.5 inline-block text-brand-black">Connections</span>
-          </h1>
-          <p className="text-base sm:text-lg text-brand-gray max-w-2xl mx-auto leading-relaxed mt-4">
-            From city-wide marathons and trail runs to corporate sports leagues and business summits, we manage registrations, timing tech, and logistics.
-          </p>
+      {/* 1. CINEMATIC FULL-WIDTH HERO */}
+      <section className="relative min-h-[70vh] lg:min-h-[650px] flex items-center justify-center overflow-hidden bg-brand-black text-white pt-28 pb-16">
+        <Image
+          src={featuredEvent.image}
+          alt="MadProTek Outdoor Event Hero"
+          fill
+          priority
+          className="object-cover object-center opacity-40"
+        />
+
+        {/* Dark Vignette + Yellow Glow Overlays */}
+        <div className="absolute inset-0 bg-gradient-to-t from-brand-black via-brand-black/60 to-transparent z-10" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-brand-yellow/10 rounded-full blur-[140px] pointer-events-none z-10" />
+
+        <Container className="relative z-20 text-center max-w-4xl">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="space-y-6">
+            <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-brand-yellow text-brand-black text-xs font-black uppercase tracking-widest mx-auto">
+              <Sparkles className="h-3.5 w-3.5" />
+              <span>MADPROTEK EXPERIENTIAL EVENTS</span>
+            </div>
+
+            <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-[-0.04em] leading-[0.98] text-white">
+              Experiences Worth <br />
+              <span className="text-brand-yellow">Showing Up For.</span>
+            </h1>
+
+            <p className="text-base sm:text-lg text-brand-muted max-w-2xl mx-auto leading-relaxed font-normal">
+              From city marathons to off-road expeditions, discover the high-energy physical experiences we're building next.
+            </p>
+
+            <div className="pt-2 flex justify-center">
+              <Button href="#event-grid" variant="primary" size="lg" showArrow>
+                Explore Events
+              </Button>
+            </div>
+          </motion.div>
         </Container>
       </section>
 
-      {/* Controls & Filters */}
-      <section className="py-6 bg-white border-b border-brand-border">
+      {/* 2. FEATURED EVENT BANNER (Asymmetric split) */}
+      {featuredEvent && (
+        <section className="py-16 sm:py-20 bg-brand-off-white border-b border-brand-border">
+          <Container>
+            <div className="bg-brand-black text-white rounded-3xl border-2 border-brand-yellow overflow-hidden grid grid-cols-1 lg:grid-cols-12 shadow-2xl">
+              {/* Image Side (60%) */}
+              <div className="lg:col-span-7 relative min-h-[350px] lg:min-h-[450px] overflow-hidden group">
+                <Image
+                  src={featuredEvent.image}
+                  alt={featuredEvent.title}
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-brand-black/90 hidden lg:block" />
+                <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-brand-yellow text-brand-black text-xs font-black uppercase tracking-wider">
+                  FEATURED EVENT
+                </div>
+              </div>
+
+              {/* Info Side (40%) */}
+              <div className="lg:col-span-5 p-8 sm:p-12 flex flex-col justify-between space-y-6">
+                <div className="space-y-4">
+                  <div className="inline-flex items-center space-x-2 text-xs font-bold uppercase tracking-widest text-brand-yellow">
+                    <Trophy className="h-4 w-4" />
+                    <span>{featuredEvent.category}</span>
+                  </div>
+
+                  <h2 className="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
+                    {featuredEvent.title}
+                  </h2>
+
+                  <p className="text-sm text-brand-muted leading-relaxed">
+                    {featuredEvent.shortDescription}
+                  </p>
+
+                  <div className="space-y-2 text-xs font-bold text-gray-300 pt-2 border-t border-brand-black-gray">
+                    <div className="flex items-center space-x-2">
+                      <Calendar className="h-4 w-4 text-brand-yellow" />
+                      <span>{featuredEvent.date}</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <MapPin className="h-4 w-4 text-brand-yellow" />
+                      <span>{featuredEvent.location}</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <Button href={`/events/${featuredEvent.slug}`} variant="primary" size="lg" showArrow className="w-full">
+                    Register Now
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </Container>
+        </section>
+      )}
+
+      {/* 3. CONTROLS & CATEGORY FILTER */}
+      <section className="py-6 bg-white border-b border-brand-border sticky top-[76px] z-30 shadow-xs" id="event-grid">
         <Container>
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div className="flex flex-row overflow-x-auto gap-2 pb-2 md:pb-0 scrollbar-none">
@@ -76,7 +161,7 @@ export default function EventsPage() {
         </Container>
       </section>
 
-      {/* Events Grid */}
+      {/* 4. VISUAL-FIRST PHOTOGRAPHY GRID */}
       <section className="py-16 bg-white flex-grow">
         <Container>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -89,36 +174,60 @@ export default function EventsPage() {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.3 }}
-                  className="group bg-white rounded-3xl border border-brand-border p-6 flex flex-col justify-between hover:border-brand-black transition-all duration-300 shadow-sm"
+                  className="group bg-white rounded-3xl border border-brand-border overflow-hidden flex flex-col justify-between hover:border-brand-black transition-all duration-300 shadow-sm"
                 >
-                  <div>
-                    {/* Yellow Date Badge */}
-                    <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-lg bg-brand-yellow font-black text-brand-black text-xs uppercase tracking-wider mb-4">
-                      <Calendar className="h-3.5 w-3.5" />
-                      <span>{event.date}</span>
+                  {/* Large Photography Banner (65% Card Area) */}
+                  <div className="relative h-64 sm:h-72 w-full bg-brand-black overflow-hidden">
+                    <Image
+                      src={event.image}
+                      alt={event.title}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-brand-black/80 via-transparent to-transparent" />
+                    
+                    {/* Status Badge */}
+                    <div className="absolute top-4 left-4 inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-brand-yellow text-brand-black text-[10px] font-black uppercase tracking-wider">
+                      <span className="w-1.5 h-1.5 rounded-full bg-brand-black animate-ping" />
+                      <span>{event.status}</span>
                     </div>
 
-                    <h3 className="text-xl font-extrabold text-brand-black mb-3 group-hover:text-brand-yellow-dark transition-colors">
-                      {event.title}
-                    </h3>
-                    <p className="text-xs sm:text-sm text-brand-gray line-clamp-3 leading-relaxed mb-6">
-                      {event.shortDescription}
-                    </p>
-
-                    <div className="flex items-center space-x-2 text-xs font-semibold text-brand-muted pt-4 border-t border-brand-border">
-                      <MapPin className="h-4 w-4 text-brand-yellow shrink-0" />
-                      <span>{event.location}</span>
+                    <div className="absolute bottom-4 left-4 right-4 text-white">
+                      <span className="text-[10px] font-black text-brand-yellow uppercase tracking-widest block">
+                        {event.category}
+                      </span>
+                      <h3 className="text-xl font-extrabold text-white line-clamp-1">
+                        {event.title}
+                      </h3>
                     </div>
                   </div>
 
-                  <div className="pt-6">
-                    <Link
-                      href={`/events/${event.slug}`}
-                      className="w-full inline-flex items-center justify-between px-5 py-3 rounded-xl bg-brand-black text-white hover:bg-brand-yellow hover:text-brand-black transition-colors text-xs font-bold"
-                    >
-                      <span>View Details & Register</span>
-                      <ArrowRight className="h-4 w-4" />
-                    </Link>
+                  {/* Copy & Details */}
+                  <div className="p-6 space-y-4 flex-grow flex flex-col justify-between">
+                    <p className="text-xs sm:text-sm text-brand-gray line-clamp-2 leading-relaxed">
+                      {event.shortDescription}
+                    </p>
+
+                    <div className="space-y-1.5 pt-3 border-t border-brand-border text-xs font-bold text-brand-muted">
+                      <div className="flex items-center space-x-2">
+                        <Calendar className="h-3.5 w-3.5 text-brand-yellow-dark shrink-0" />
+                        <span>{event.date}</span>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <MapPin className="h-3.5 w-3.5 text-brand-yellow-dark shrink-0" />
+                        <span>{event.location}</span>
+                      </div>
+                    </div>
+
+                    <div className="pt-2">
+                      <Link
+                        href={`/events/${event.slug}`}
+                        className="w-full inline-flex items-center justify-between px-5 py-3 rounded-xl bg-brand-black text-white hover:bg-brand-yellow hover:text-brand-black transition-colors text-xs font-bold group/btn"
+                      >
+                        <span>Explore Event Details</span>
+                        <ArrowRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
+                      </Link>
+                    </div>
                   </div>
                 </motion.div>
               ))}

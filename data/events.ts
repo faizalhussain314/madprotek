@@ -8,6 +8,12 @@ export interface EventHighlight {
   value: string;
 }
 
+export interface EventGalleryImage {
+  src: string;
+  alt: string;
+  caption: string;
+}
+
 export interface EventData {
   id: string;
   slug: string;
@@ -18,10 +24,12 @@ export interface EventData {
   image: string;
   shortDescription: string;
   description: string;
-  status: "Upcoming" | "Active" | "Completed";
+  status: "Upcoming" | "REGISTRATION OPEN" | "SOLD OUT" | "COMPLETED";
   registrationEnabled: boolean;
+  featured?: boolean;
   schedule: EventScheduleItem[];
   highlights: EventHighlight[];
+  gallery: EventGalleryImage[];
   venue: string;
   address: string;
   mapEmbedUrlPlaceholder: string;
@@ -35,11 +43,12 @@ export const eventsData: EventData[] = [
     category: "Marathons",
     date: "October 18, 2026",
     location: "Hosur, Tamil Nadu",
-    image: "/events/marathon.png",
-    shortDescription: "Join thousands of runners in the annual Hosur Half Marathon to promote healthy living and community wellness.",
-    description: "The Hosur Half Marathon is the region's largest road running event, bringing together professional athletes, fitness enthusiasts, and corporate teams. Running through scenic routes with cheering crowds, this marathon features multiple race categories: a 21K Half Marathon, a 10K Run, and a 5K Fun Run. Professionally timed using electronic bib tags, it provides water stations every 2km, emergency medical support, and a grand finisher's medal for all participants.",
-    status: "Upcoming",
+    image: "/images/events/marathon/hero.svg",
+    shortDescription: "Join 3,500+ runners in the region's largest road running event featuring electronic bib timing, spectator zones, and finisher rewards.",
+    description: "The Hosur Half Marathon is the region's largest road running event, bringing together professional athletes, fitness enthusiasts, and corporate teams. Running through scenic routes with cheering crowds, this marathon features multiple race categories: 21K Half Marathon, 10K Run, and 5K Fun Run.",
+    status: "REGISTRATION OPEN",
     registrationEnabled: true,
+    featured: true,
     schedule: [
       { time: "05:00 AM", activity: "Assembling & Warm-up Session" },
       { time: "05:30 AM", activity: "21K Half Marathon Flag Off" },
@@ -54,8 +63,47 @@ export const eventsData: EventData[] = [
       { title: "Safety First", value: "4 Ambulances & 6 Medical Stations" },
       { title: "Goodies & Swag", value: "Dry-fit T-shirt & Timing Bib" }
     ],
+    gallery: [
+      { src: "/images/events/marathon/start-line.svg", alt: "Marathon Starting Line", caption: "01 — Starting line & flag off" },
+      { src: "/images/events/marathon/runners.svg", alt: "Marathon Elite Runners", caption: "02 — Elite runner convoy" },
+      { src: "/images/events/marathon/crowd.svg", alt: "Marathon Cheering Crowd", caption: "03 — Cheering spectator zone" },
+      { src: "/images/events/marathon/finish.svg", alt: "Marathon Finish Ceremony", caption: "04 — Finisher medal ceremony" }
+    ],
     venue: "Hosur Stadium Grounds",
     address: "Inner Ring Road, Hosur, Tamil Nadu 635109",
+    mapEmbedUrlPlaceholder: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3892.4282367469343!2d77.82862831535905!3d12.729188991016845!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae713e7ffffff%3A0x8ba6e8b4e7ffffff!2sHosur%20Stadium!5e0!3m2!1sen!2sin!4v1655000000000!5m2!1sen!2sin"
+  },
+  {
+    id: "western-ghats-off-road-challenge-2026",
+    slug: "western-ghats-off-road-challenge-2026",
+    title: "Western Ghats Off-Road Challenge",
+    category: "Off-Road",
+    date: "January 22-24, 2027",
+    location: "Western Ghats Circuit",
+    image: "/images/events/offroad/hero.svg",
+    shortDescription: "A 3-day rugged 4x4 Jeep expedition conquering rocky mountain passes, mud trails, and remote forest routes.",
+    description: "Experience the ultimate off-road adventure through the Western Ghats. Over three adrenaline-packed days, 4x4 Jeep crews navigate steep inclines, natural river beds, and technical rock crawls with professional trail marshals.",
+    status: "REGISTRATION OPEN",
+    registrationEnabled: true,
+    schedule: [
+      { time: "DAY 1 - 07:00 AM", activity: "Vehicle Scrutineering & Marshal Briefing" },
+      { time: "DAY 1 - 09:00 AM", activity: "Stage 1 Mountain Trail Expedition" },
+      { time: "DAY 2 - 08:00 AM", activity: "Stage 2 Mud & Obstacle Circuit" },
+      { time: "DAY 3 - 04:00 PM", activity: "Trophy Presentation & Campfire Gala" }
+    ],
+    highlights: [
+      { title: "Participating Vehicles", value: "80 Off-Road 4x4 Jeeps" },
+      { title: "Trail Terrain", value: "Mud, Rocks & Elevation Gains" },
+      { title: "Marshal Support", value: "GPS Tracking & Winch Crew" },
+      { title: "Overnight Stay", value: "Luxury Jungle Camping" }
+    ],
+    gallery: [
+      { src: "/images/events/offroad/jeep-convoy.svg", alt: "4x4 Convoy Trail", caption: "01 — 4x4 Trail expedition" },
+      { src: "/images/events/offroad/terrain.svg", alt: "Mountain River Crossing", caption: "02 — Mud & mountain crossing" },
+      { src: "/images/events/offroad/participants.svg", alt: "Jeep Crew & Marshals", caption: "03 — Jeep crew & marshals" }
+    ],
+    venue: "Western Ghats Basecamp",
+    address: "Valparai Forest Route, Tamil Nadu",
     mapEmbedUrlPlaceholder: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3892.4282367469343!2d77.82862831535905!3d12.729188991016845!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae713e7ffffff%3A0x8ba6e8b4e7ffffff!2sHosur%20Stadium!5e0!3m2!1sen!2sin!4v1655000000000!5m2!1sen!2sin"
   },
   {
@@ -63,87 +111,55 @@ export const eventsData: EventData[] = [
     slug: "yelagiri-adventure-trail-2026",
     title: "Yelagiri Adventure Trail",
     category: "Adventure",
-    date: "November 14, 2026",
+    date: "December 06, 2026",
     location: "Yelagiri Hills, Vellore",
-    image: "/events/adventure.png",
-    shortDescription: "A challenging 15km mountain trail run and hike through the rugged and beautiful Yelagiri Hills.",
-    description: "Escape the city and challenge your limits at the Yelagiri Adventure Trail. Navigating rocky paths, dense forest pathways, and elevation gains of over 600m, this event is designed for nature lovers and trail runners who crave adventure. Every participant gets GPS maps, emergency support, and trail guidance checkpoints throughout the course.",
+    image: "/images/events/adventure/hero.svg",
+    shortDescription: "A 15km mountain trail run and nature trek through scenic pine forests and hill summits.",
+    description: "Escape the city and challenge your limits at the Yelagiri Adventure Trail. Navigating rocky paths and elevation gains of over 600m, this event is designed for nature lovers and trail runners.",
     status: "Upcoming",
     registrationEnabled: true,
     schedule: [
-      { time: "06:00 AM", activity: "Report at Base Camp & Gear Check" },
-      { time: "06:30 AM", activity: "Trail Briefing & Guidelines" },
-      { time: "07:00 AM", activity: "Adventure Trail Start" },
-      { time: "11:30 AM", activity: "Finish Line Gathering & Lunch" },
-      { time: "01:00 PM", activity: "Distribution of Certificates & Badges" }
+      { time: "06:00 AM", activity: "Assembly & Trail Briefing" },
+      { time: "06:30 AM", activity: "15K Trail Flag Off" },
+      { time: "11:00 AM", activity: "Summit Breakfast & Medals" }
     ],
     highlights: [
-      { title: "Distance", value: "15 Kilometers Hike & Run" },
-      { title: "Terrain", value: "Forest Paths, Streams, & Rocks" },
-      { title: "Altitude Gain", value: "+600 Meters Elevation" },
-      { title: "Logistics", value: "Hydration Stations & Spotters" }
+      { title: "Trail Length", value: "15KM Mountain Route" },
+      { title: "Elevation Gain", value: "600M Forest Climb" }
     ],
-    venue: "Yelagiri Hills Base Camp",
-    address: "Athanavur Main Road, Yelagiri Hills, Tamil Nadu 635853",
-    mapEmbedUrlPlaceholder: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15582.476483584857!2d78.63604085!3d12.57467645!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bac5443a0d9e7d9%3A0xe54e601c40ab212b!2sYelagiri%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1655000000001!5m2!1sen!2sin"
+    gallery: [
+      { src: "/images/events/adventure/group.svg", alt: "Mountain Trek Group", caption: "01 — Mountain trek group" },
+      { src: "/images/events/adventure/activity.svg", alt: "Summit Activation", caption: "02 — Summit trail activation" }
+    ],
+    venue: "Yelagiri Hill Park",
+    address: "Mangalam Road, Yelagiri Hills 635853",
+    mapEmbedUrlPlaceholder: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3892.4282367469343!2d77.82862831535905!3d12.729188991016845!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae713e7ffffff%3A0x8ba6e8b4e7ffffff!2sHosur%20Stadium!5e0!3m2!1sen!2sin!4v1655000000000!5m2!1sen!2sin"
   },
   {
     id: "madprotek-corporate-cricket-clash-2026",
     slug: "madprotek-corporate-cricket-clash-2026",
-    title: "Corporate Cricket Clash",
+    title: "Corporate Cricket Clash 2026",
     category: "Cricket",
-    date: "December 05-06, 2026",
-    location: "Hosur, Tamil Nadu",
-    image: "/events/cricket.png",
-    shortDescription: "A premium 2-day cricket tournament bringing corporate teams together for networking and healthy sportsmanship.",
-    description: "The MadProTek Corporate Cricket Clash is a standard 10-over tennis ball cricket tournament. Gathering leading technology, industrial, and branding corporations from Bangalore and Hosur, it is the perfect platform to blend corporate networking, competition, and sportsmanship. Food stalls, DJ setups, and family areas are available for spectators.",
+    date: "November 14-15, 2026",
+    location: "Hosur Sports Complex",
+    image: "/images/events/cricket/hero.svg",
+    shortDescription: "A weekend T10 leather-ball cricket tournament featuring 32 corporate enterprise teams.",
+    description: "The premier corporate sports showdown in the industrial hub of Hosur. 32 enterprise teams battle in T10 knockout rounds with professional turf pitches and live digital scoring.",
     status: "Upcoming",
     registrationEnabled: true,
     schedule: [
-      { time: "08:00 AM (Day 1)", activity: "Inauguration Ceremony & Team Photos" },
-      { time: "09:00 AM (Day 1)", activity: "League Stage Matches Begin" },
-      { time: "01:00 PM (Day 1)", activity: "Lunch Break & Network Mixers" },
-      { time: "09:00 AM (Day 2)", activity: "Quarter-Finals & Semi-Finals" },
-      { time: "03:00 PM (Day 2)", activity: "Grand Finale Match" },
-      { time: "05:00 PM (Day 2)", activity: "Presentation Ceremony & Cocktail Hour" }
+      { time: "SAT 08:00 AM", activity: "Group Stage League Matches" },
+      { time: "SUN 03:00 PM", activity: "Final Championship Match" }
     ],
     highlights: [
-      { title: "Team Slots", value: "16 Corporate Teams" },
-      { title: "Format", value: "10-Overs Knockout & League" },
-      { title: "Prizes", value: "INR 1,00,000 Cash + Trophies" },
-      { title: "Media Coverage", value: "Live stream on YouTube" }
+      { title: "Corporate Teams", value: "32 Enterprise Squads" },
+      { title: "Match Format", value: "T10 Leather-Ball Knockouts" }
     ],
-    venue: "MadProTek Sports Arena",
-    address: "SIPCOT Phase II, Hosur, Tamil Nadu 635109",
-    mapEmbedUrlPlaceholder: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15589.654877964432!2d77.818456!3d12.723145!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTLCsDQzJzIzLjMiTiA3N8KwNDknMDYuNSJF!5e0!3m2!1sen!2sin!4v1655000000002!5m2!1sen!2sin"
-  },
-  {
-    id: "western-ghats-off-road-challenge-2026",
-    slug: "western-ghats-off-road-challenge-2026",
-    title: "Western Ghats Off-Road Challenge",
-    category: "Off-Road",
-    date: "January 23, 2027",
-    location: "Western Ghats Trails",
-    image: "/events/offroad.png",
-    shortDescription: "An extreme 4x4 off-road adventure challenge testing driver navigation and vehicle capability through mud and rock.",
-    description: "The Western Ghats Off-Road Challenge tests driver focus, team communication, and mechanical configuration. Set across private estate trails, vehicles must tackle slippery mud trails, vertical climbs, and river crossing obstacles. Safety marshals, support winches, and tracking systems are stationed throughout.",
-    status: "Upcoming",
-    registrationEnabled: true,
-    schedule: [
-      { time: "07:00 AM", activity: "Vehicle Scrutiny & Safety Check" },
-      { time: "08:00 AM", activity: "Driver Briefing & Trail Mapping" },
-      { time: "09:00 AM", activity: "First Vehicle Flag Off" },
-      { time: "04:00 PM", activity: "Course Cut-off & Recovery" },
-      { time: "06:00 PM", activity: "Award Gala Dinner & Driver Stories" }
+    gallery: [
+      { src: "/images/events/cricket/action.svg", alt: "Championship Cricket Match", caption: "01 — Championship match" }
     ],
-    highlights: [
-      { title: "Classes", value: "Stock and Modified 4x4 Classes" },
-      { title: "Obstacles", value: "Mud Pit, Rock Crawl, River Crossing" },
-      { title: "Safety", value: "Winches & Recovery Teams at each stage" },
-      { title: "Logistics", value: "Camping Site Access Included" }
-    ],
-    venue: "Valley View Estate Trails",
-    address: "Ghat Road, Western Ghats Region, Tamil Nadu",
-    mapEmbedUrlPlaceholder: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d125345.98754!2d76.9248!3d11.0168!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba859af!2sCoimbatore%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1655000000003!5m2!1sen!2sin"
+    venue: "Hosur Sports Complex",
+    address: "Mathigiri Road, Hosur 635109",
+    mapEmbedUrlPlaceholder: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3892.4282367469343!2d77.82862831535905!3d12.729188991016845!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae713e7ffffff%3A0x8ba6e8b4e7ffffff!2sHosur%20Stadium!5e0!3m2!1sen!2sin!4v1655000000000!5m2!1sen!2sin"
   }
 ];

@@ -44,12 +44,12 @@ export default function Button({
   );
 
   const content = (
-    <>
-      <span>{children}</span>
+    <span className="inline-flex items-center justify-center space-x-2 whitespace-nowrap">
+      {children}
       {showArrow && (
-        <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+        <ArrowRight className="ml-1 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 shrink-0" />
       )}
-    </>
+    </span>
   );
 
   if (href) {
