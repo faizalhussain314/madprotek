@@ -6,6 +6,8 @@ import Container from "@/components/ui/Container";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Button from "@/components/ui/Button";
 
+import HighlightText from "@/components/ui/HighlightText";
+
 export default function ContactPage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -24,14 +26,14 @@ export default function ContactPage() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Header */}
-      <section className="py-20 lg:py-28 bg-brand-off-white border-b border-brand-border">
+      <section className="py-12 lg:py-16 bg-brand-off-white border-b border-brand-border">
         <Container className="text-center max-w-4xl">
           <span className="text-xs font-bold uppercase tracking-widest text-brand-black bg-brand-yellow px-3 py-1 rounded-full">
             GET IN TOUCH
           </span>
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-brand-black leading-tight tracking-tight mt-4">
             Let's Start a <br />
-            <span className="bg-brand-yellow px-2 py-0.5 inline-block text-brand-black">Conversation</span>
+            <HighlightText delay={0.3}>Conversation</HighlightText>
           </h1>
           <p className="text-base sm:text-lg text-brand-gray max-w-2xl mx-auto leading-relaxed mt-4">
             Have a project in mind, need technical architecture advice, or want to sponsor a public event? Reach out to our execution team directly.

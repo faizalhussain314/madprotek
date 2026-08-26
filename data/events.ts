@@ -43,7 +43,7 @@ export const eventsData: EventData[] = [
     category: "Marathons",
     date: "October 18, 2026",
     location: "Hosur, Tamil Nadu",
-    image: "/images/events/marathon/hero.svg",
+    image: "/images/events/marathon/hero.png",
     shortDescription: "Join 3,500+ runners in the region's largest road running event featuring electronic bib timing, spectator zones, and finisher rewards.",
     description: "The Hosur Half Marathon is the region's largest road running event, bringing together professional athletes, fitness enthusiasts, and corporate teams. Running through scenic routes with cheering crowds, this marathon features multiple race categories: 21K Half Marathon, 10K Run, and 5K Fun Run.",
     status: "REGISTRATION OPEN",
@@ -64,10 +64,10 @@ export const eventsData: EventData[] = [
       { title: "Goodies & Swag", value: "Dry-fit T-shirt & Timing Bib" }
     ],
     gallery: [
-      { src: "/images/events/marathon/start-line.svg", alt: "Marathon Starting Line", caption: "01 — Starting line & flag off" },
-      { src: "/images/events/marathon/runners.svg", alt: "Marathon Elite Runners", caption: "02 — Elite runner convoy" },
-      { src: "/images/events/marathon/crowd.svg", alt: "Marathon Cheering Crowd", caption: "03 — Cheering spectator zone" },
-      { src: "/images/events/marathon/finish.svg", alt: "Marathon Finish Ceremony", caption: "04 — Finisher medal ceremony" }
+      { src: "/images/events/marathon/start-line.png", alt: "Marathon Starting Line", caption: "01 — Starting line & flag off" },
+      { src: "/images/events/marathon/runners.png", alt: "Marathon Elite Runners", caption: "02 — Elite runner convoy" },
+      { src: "/images/events/marathon/crowd.png", alt: "Marathon Cheering Crowd", caption: "03 — Cheering spectator zone" },
+      { src: "/images/events/marathon/finish.png", alt: "Marathon Finish Ceremony", caption: "04 — Finisher medal ceremony" }
     ],
     venue: "Hosur Stadium Grounds",
     address: "Inner Ring Road, Hosur, Tamil Nadu 635109",
@@ -80,7 +80,7 @@ export const eventsData: EventData[] = [
     category: "Off-Road",
     date: "January 22-24, 2027",
     location: "Western Ghats Circuit",
-    image: "/images/events/offroad/hero.svg",
+    image: "/images/events/offroad/hero.png",
     shortDescription: "A 3-day rugged 4x4 Jeep expedition conquering rocky mountain passes, mud trails, and remote forest routes.",
     description: "Experience the ultimate off-road adventure through the Western Ghats. Over three adrenaline-packed days, 4x4 Jeep crews navigate steep inclines, natural river beds, and technical rock crawls with professional trail marshals.",
     status: "REGISTRATION OPEN",
@@ -98,9 +98,9 @@ export const eventsData: EventData[] = [
       { title: "Overnight Stay", value: "Luxury Jungle Camping" }
     ],
     gallery: [
-      { src: "/images/events/offroad/jeep-convoy.svg", alt: "4x4 Convoy Trail", caption: "01 — 4x4 Trail expedition" },
-      { src: "/images/events/offroad/terrain.svg", alt: "Mountain River Crossing", caption: "02 — Mud & mountain crossing" },
-      { src: "/images/events/offroad/participants.svg", alt: "Jeep Crew & Marshals", caption: "03 — Jeep crew & marshals" }
+      { src: "/images/events/offroad/jeep-convoy.png", alt: "4x4 Convoy Trail", caption: "01 — 4x4 Trail expedition" },
+      { src: "/images/events/offroad/terrain.png", alt: "Mountain River Crossing", caption: "02 — Mud & mountain crossing" },
+      { src: "/images/events/offroad/participants.png", alt: "Jeep Crew & Marshals", caption: "03 — Jeep crew & marshals" }
     ],
     venue: "Western Ghats Basecamp",
     address: "Valparai Forest Route, Tamil Nadu",
@@ -113,7 +113,7 @@ export const eventsData: EventData[] = [
     category: "Adventure",
     date: "December 06, 2026",
     location: "Yelagiri Hills, Vellore",
-    image: "/images/events/adventure/hero.svg",
+    image: "/images/events/adventure/hero.png",
     shortDescription: "A 15km mountain trail run and nature trek through scenic pine forests and hill summits.",
     description: "Escape the city and challenge your limits at the Yelagiri Adventure Trail. Navigating rocky paths and elevation gains of over 600m, this event is designed for nature lovers and trail runners.",
     status: "Upcoming",
@@ -128,8 +128,8 @@ export const eventsData: EventData[] = [
       { title: "Elevation Gain", value: "600M Forest Climb" }
     ],
     gallery: [
-      { src: "/images/events/adventure/group.svg", alt: "Mountain Trek Group", caption: "01 — Mountain trek group" },
-      { src: "/images/events/adventure/activity.svg", alt: "Summit Activation", caption: "02 — Summit trail activation" }
+      { src: "/images/events/adventure/group.png", alt: "Mountain Trek Group", caption: "01 — Mountain trek group" },
+      { src: "/images/events/adventure/activity.png", alt: "Summit Activation", caption: "02 — Summit trail activation" }
     ],
     venue: "Yelagiri Hill Park",
     address: "Mangalam Road, Yelagiri Hills 635853",
@@ -142,7 +142,7 @@ export const eventsData: EventData[] = [
     category: "Cricket",
     date: "November 14-15, 2026",
     location: "Hosur Sports Complex",
-    image: "/images/events/cricket/hero.svg",
+    image: "/images/events/cricket/hero.png",
     shortDescription: "A weekend T10 leather-ball cricket tournament featuring 32 corporate enterprise teams.",
     description: "The premier corporate sports showdown in the industrial hub of Hosur. 32 enterprise teams battle in T10 knockout rounds with professional turf pitches and live digital scoring.",
     status: "Upcoming",
@@ -156,7 +156,7 @@ export const eventsData: EventData[] = [
       { title: "Match Format", value: "T10 Leather-Ball Knockouts" }
     ],
     gallery: [
-      { src: "/images/events/cricket/action.svg", alt: "Championship Cricket Match", caption: "01 — Championship match" }
+      { src: "/images/events/cricket/action.png", alt: "Championship Cricket Match", caption: "01 — Championship match" }
     ],
     venue: "Hosur Sports Complex",
     address: "Mathigiri Road, Hosur 635109",

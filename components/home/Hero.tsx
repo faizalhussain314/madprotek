@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Code, Smartphone, Megaphone, Calendar, Star, CheckCircle2, ShieldCheck } from "lucide-react";
+import HighlightText from "../ui/HighlightText";
 import Button from "../ui/Button";
 
 export default function Hero() {
@@ -16,7 +17,7 @@ export default function Hero() {
   ];
 
   return (
-    <section className="relative min-h-[85vh] lg:min-h-[800px] flex items-center justify-center overflow-hidden pt-28 pb-16 bg-white">
+    <section className="relative min-h-[70vh] lg:min-h-[680px] flex items-center justify-center overflow-hidden pt-6 sm:pt-8 md:pt-10 lg:pt-12 pb-12 lg:pb-16 bg-white">
       {/* DECORATIVE BACKGROUND GLOWS */}
       <div className="absolute top-10 right-10 w-[500px] h-[500px] bg-brand-yellow-subtle/60 rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] bg-brand-warm-white rounded-full blur-[100px] pointer-events-none" />
@@ -44,7 +45,7 @@ export default function Hero() {
 
           {/* H1 Heading */}
           <h1 className="text-[40px] sm:text-[54px] md:text-[68px] lg:text-[76px] font-extrabold text-brand-black leading-[0.98] tracking-[-0.04em]">
-            Building <span className="bg-brand-yellow px-2 py-0.5 text-brand-black rounded-lg inline-block">Ideas.</span><br />
+            Building <HighlightText delay={0.4}>Ideas.</HighlightText><br />
             Creating <span className="text-brand-yellow-dark">Digital Impact.</span>
           </h1>
 

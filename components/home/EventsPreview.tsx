@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { Calendar, MapPin, ArrowRight } from "lucide-react";
 import { eventsData } from "@/data/events";
+import Image from "next/image";
 import Container from "../ui/Container";
 import SectionHeading from "../ui/SectionHeading";
 import Button from "../ui/Button";
@@ -31,34 +32,49 @@ export default function EventsPreview() {
           {featured.map((event) => (
             <div
               key={event.id}
-              className="group bg-white rounded-3xl border border-brand-border p-6 sm:p-8 flex flex-col justify-between hover:border-brand-black transition-all duration-300 shadow-sm"
+              className="group bg-white rounded-3xl border border-brand-border p-6 sm:p-7 flex flex-col justify-between hover:border-brand-black transition-all duration-300 shadow-sm"
             >
               <div>
+                {/* Event Photo Banner */}
+                <Link href={`/events/${event.slug}`} className="block h-48 w-full rounded-2xl bg-brand-black relative overflow-hidden mb-5 shadow-2xs group/img">
+                  <Image
+                    src={event.image}
+                    alt={event.title}
+                    fill
+                    className="object-cover group-hover/img:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute top-3 left-3 px-3 py-1 rounded-md bg-brand-yellow text-brand-black text-[10px] font-black uppercase tracking-wider z-10 shadow-sm">
+                    {event.category}
+                  </div>
+                </Link>
+
                 {/* Yellow Date Treatment */}
-                <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-lg bg-brand-yellow font-black text-brand-black text-xs uppercase tracking-wider mb-4">
-                  <Calendar className="h-3.5 w-3.5" />
+                <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-lg bg-brand-yellow/20 text-brand-black font-black text-xs uppercase tracking-wider mb-3">
+                  <Calendar className="h-3.5 w-3.5 text-brand-black" />
                   <span>{event.date}</span>
                 </div>
 
-                <h3 className="text-xl font-extrabold text-brand-black mb-3 group-hover:text-brand-yellow-dark transition-colors">
-                  {event.title}
+                <h3 className="text-xl font-extrabold text-brand-black mb-2 group-hover:text-brand-yellow-dark transition-colors line-clamp-1">
+                  <Link href={`/events/${event.slug}`}>
+                    {event.title}
+                  </Link>
                 </h3>
-                <p className="text-xs sm:text-sm text-brand-gray line-clamp-3 leading-relaxed mb-6">
+                <p className="text-xs sm:text-sm text-brand-gray line-clamp-2 leading-relaxed mb-4">
                   {event.shortDescription}
                 </p>
 
-                <div className="flex items-center space-x-2 text-xs font-semibold text-brand-muted pt-4 border-t border-brand-border">
-                  <MapPin className="h-4 w-4 text-brand-yellow shrink-0" />
-                  <span>{event.location}</span>
+                <div className="flex items-center space-x-2 text-xs font-semibold text-brand-muted pt-3 border-t border-brand-border">
+                  <MapPin className="h-4 w-4 text-brand-yellow-dark shrink-0" />
+                  <span className="truncate">{event.location}</span>
                 </div>
               </div>
 
-              <div className="pt-6">
+              <div className="pt-5">
                 <Link
                   href={`/events/${event.slug}`}
                   className="w-full inline-flex items-center justify-between px-5 py-3 rounded-xl bg-brand-black text-white hover:bg-brand-yellow hover:text-brand-black transition-colors text-xs font-bold"
                 >
-                  <span>View Details</span>
+                  <span>View Event Details</span>
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>

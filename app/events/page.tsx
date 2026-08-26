@@ -28,7 +28,7 @@ export default function EventsPage() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* 1. CINEMATIC FULL-WIDTH HERO */}
-      <section className="relative min-h-[70vh] lg:min-h-[650px] flex items-center justify-center overflow-hidden bg-brand-black text-white pt-28 pb-16">
+      <section className="relative min-h-[60vh] lg:min-h-[550px] flex items-center justify-center overflow-hidden bg-brand-black text-white pt-8 lg:pt-12 pb-12 lg:pb-16">
         <Image
           src={featuredEvent.image}
           alt="MadProTek Outdoor Event Hero"

@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { Code, Palette, Megaphone, Calendar, Briefcase, CheckCircle2 } from "lucide-react";
 import Container from "@/components/ui/Container";
 import SectionHeading from "@/components/ui/SectionHeading";
+import HighlightText from "@/components/ui/HighlightText";
 import Button from "@/components/ui/Button";
 
 export default function AboutPage() {
@@ -18,7 +19,7 @@ export default function AboutPage() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Header */}
-      <section className="py-20 lg:py-28 bg-brand-off-white border-b border-brand-border">
+      <section className="py-12 lg:py-16 bg-brand-off-white border-b border-brand-border">
         <Container className="text-center max-w-4xl">
           <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="space-y-4">
             <span className="text-xs font-bold uppercase tracking-widest text-brand-black bg-brand-yellow px-3 py-1 rounded-full">
@@ -26,7 +27,7 @@ export default function AboutPage() {
             </span>
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-brand-black leading-tight tracking-tight">
               Technology is what we build.<br />
-              <span className="bg-brand-yellow px-2 py-0.5 inline-block text-brand-black">Impact</span> is why we build it.
+              <HighlightText delay={0.3}>Impact</HighlightText> is why we build it.
             </h1>
             <p className="text-base sm:text-lg text-brand-gray max-w-2xl mx-auto leading-relaxed">
               We consolidate software development, visual brand strategy, paid marketing acquisition, and public event execution under a single partner.

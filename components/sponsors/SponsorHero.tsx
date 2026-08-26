@@ -4,11 +4,12 @@ import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Sparkles, Trophy, ShieldCheck } from "lucide-react";
+import HighlightText from "../ui/HighlightText";
 import Button from "../ui/Button";
 
 export default function SponsorHero() {
   return (
-    <section className="relative min-h-[90vh] lg:min-h-[850px] flex items-center justify-center overflow-hidden pt-28 pb-16 bg-white">
+    <section className="relative min-h-[70vh] lg:min-h-[700px] flex items-center justify-center overflow-hidden pt-6 sm:pt-8 md:pt-10 lg:pt-12 pb-12 lg:pb-16 bg-white">
       {/* Atmosphere Background */}
       <div className="absolute top-10 right-10 w-[550px] h-[550px] bg-brand-yellow-subtle/70 rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-brand-warm-white rounded-full blur-[100px] pointer-events-none" />
@@ -31,7 +32,7 @@ export default function SponsorHero() {
           {/* Headline */}
           <h1 className="text-[44px] sm:text-[58px] md:text-[72px] lg:text-[82px] font-extrabold text-brand-black leading-[0.98] tracking-[-0.04em]">
             Put Your Brand <br />
-            <span className="bg-brand-yellow px-2 py-0.5 text-brand-black rounded-xl inline-block">In The Experience.</span>
+            <HighlightText delay={0.4}>In The Experience.</HighlightText>
           </h1>
 
           {/* Supporting Copy */}

@@ -7,6 +7,7 @@ export interface PortfolioItem {
   client: string;
   year: string;
   image: string;
+  url: string;
   tags: string[];
   featured?: boolean;
 }
@@ -15,61 +16,40 @@ export const portfolioData: PortfolioItem[] = [
   {
     id: "fintech-solution",
     slug: "fintech-solution",
-    title: "Fintech Solution Platform",
-    category: "Web & Mobile Applications",
-    description: "Next-generation digital banking platform engineered for secure real-time micro-investments, digital wallets, and automated financial transaction processing.",
-    client: "Fintech Solution",
+    title: "Fintech Financial Solution Platform",
+    category: "Fintech & Web Applications",
+    description: "Next-generation digital financial platform engineered for loan applications, micro-investments, secure digital transactions, and automated portfolio management.",
+    client: "Fintech Financial Solution",
     year: "2026",
     image: "/images/portfolio/fintech-solution.png",
-    tags: ["Next.js", "TypeScript", "Fintech Engine", "Security"],
+    url: "https://www.fintechfinancialsolution.com/",
+    tags: ["Fintech", "Loan Engine", "Digital Banking", "Security"],
     featured: true
   },
   {
-    id: "sreenivasa-speciality-hospital",
-    slug: "sreenivasa-speciality-hospital",
-    title: "Sreenivasa Speciality Hospital Portal",
-    category: "Healthcare & Software",
-    description: "Comprehensive multi-specialty hospital management portal featuring online OPD appointment booking, patient health records, and emergency bed tracking.",
-    client: "Sreenivasa Speciality Hospital",
-    year: "2026",
-    image: "/images/portfolio/sreenivasa-hospital.png",
-    tags: ["Hospital Management", "Patient Portal", "Telemedicine"],
-    featured: true
-  },
-  {
-    id: "dr-dharani-skin-clinic",
-    slug: "dr-dharani-skin-clinic",
-    title: "Dr.Dharani Skin Clinic Brand & Booking App",
-    category: "Branding & Web Development",
-    description: "Premium dermatology clinic website and appointment scheduling platform designed to enhance patient experience and treatment booking.",
-    client: "Dr.Dharani Skin Clinic",
+    id: "kadai2manai",
+    slug: "kadai2manai",
+    title: "Kadai2Manai Real Estate Marketplace",
+    category: "Real Estate & Web Portal",
+    description: "Comprehensive real estate and commercial property listing portal connecting plot developers, land buyers, and commercial space owners across South India.",
+    client: "Kadai2Manai",
     year: "2025",
-    image: "/images/portfolio/dr-dharani-skin-clinic.png",
-    tags: ["Dermatology", "UI/UX Architecture", "Online Booking"],
+    image: "/images/portfolio/kadai2manai.png",
+    url: "https://kadai2manai.com/",
+    tags: ["Real Estate", "Property Hub", "Web Application", "Geolocator"],
     featured: true
   },
   {
-    id: "bright-financial-solution",
-    slug: "bright-financial-solution",
-    title: "Bright Financial Solution Portal",
-    category: "Financial Tech & Branding",
-    description: "Corporate financial advisory platform delivering automated loan processing, portfolio analytics, and digital client onboarding tools.",
-    client: "Bright Financial Solution",
-    year: "2026",
-    image: "/images/portfolio/bright-financial.png",
-    tags: ["Financial Advisory", "Loan Portal", "Dashboard Analytics"],
-    featured: true
-  },
-  {
-    id: "care-of-humanity-trust",
-    slug: "care-of-humanity-trust",
-    title: "Care of Humanity Trust Non-Profit Platform",
-    category: "Non-Profit & Web Portal",
-    description: "Community trust and non-profit foundation web platform supporting donor transparent tracking, volunteer management, and social relief campaigns.",
-    client: "Care of Humanity Trust",
+    id: "clobas",
+    slug: "clobas",
+    title: "Clobas Campus Management ERP",
+    category: "EdTech & Enterprise ERP",
+    description: "Cloud-based school and campus management platform streamlining academic administration, student information systems, fee automation, and parent portals.",
+    client: "Clobas Solutions",
     year: "2025",
-    image: "/images/portfolio/care-of-humanity-trust.png",
-    tags: ["Non-Profit", "Donation Engine", "Community Trust"],
+    image: "/images/portfolio/clobas.png",
+    url: "https://www.clobas.com/",
+    tags: ["EdTech ERP", "Cloud Platform", "School Management", "SaaS"],
     featured: true
   },
   {
@@ -77,11 +57,51 @@ export const portfolioData: PortfolioItem[] = [
     slug: "new-hope-infertility-hospital",
     title: "New Hope Infertility Hospital Portal",
     category: "Healthcare & Patient Portal",
-    description: "Specialized reproductive healthcare portal offering patient counseling tools, fertility treatment schedules, and confidential doctor consultations.",
+    description: "Specialized reproductive healthcare portal offering patient counseling tools, fertility treatment schedules, online doctor booking, and medical resource guides.",
     client: "New Hope Infertility Hospital",
     year: "2026",
     image: "/images/portfolio/new-hope-hospital.png",
-    tags: ["Healthcare Portal", "Reproductive Medicine", "Patient Security"],
+    url: "https://newhopeinfertility.com/",
+    tags: ["Healthcare", "Hospital Portal", "Online Booking", "Reproductive Medicine"],
+    featured: true
+  },
+  {
+    id: "samson-associates",
+    slug: "samson-associates",
+    title: "Samson & Associates Corporate Advisory",
+    category: "Legal & Corporate Consulting",
+    description: "Corporate advisory, financial auditing, tax compliance, and legal consulting platform engineered for enterprise accounting and corporate governance.",
+    client: "Samson & Associates",
+    year: "2025",
+    image: "/images/portfolio/samson-associates.png",
+    url: "https://samsonandassociates.in/",
+    tags: ["Corporate Advisory", "Legal Consulting", "Financial Audit", "Compliance"],
+    featured: true
+  },
+  {
+    id: "care-of-humanity-trust",
+    slug: "care-of-humanity-trust",
+    title: "Care of Humanity Non-Profit Trust",
+    category: "Non-Profit & Community Foundation",
+    description: "Community trust and NGO web platform supporting transparent donation tracking, disaster relief drives, volunteer management, and social welfare programs.",
+    client: "Care of Humanity Trust",
+    year: "2025",
+    image: "/images/portfolio/care-of-humanity-trust.png",
+    url: "https://careofhumanity.com/",
+    tags: ["Non-Profit", "Donation Engine", "Community Trust", "Social Relief"],
+    featured: true
+  },
+  {
+    id: "optimus-infinity",
+    slug: "optimus-infinity",
+    title: "Optimus Infinity Enterprise IT",
+    category: "Technology & Digital Transformation",
+    description: "Enterprise IT consulting and digital transformation company platform showcasing custom cloud architectures, AI automation, and software engineering capabilities.",
+    client: "Optimus Infinity",
+    year: "2026",
+    image: "/images/portfolio/optimus-infinity.png",
+    url: "https://optimusinfinity.com/",
+    tags: ["Enterprise IT", "Cloud Architecture", "Digital Transformation", "Software Systems"],
     featured: true
   }
 ];
