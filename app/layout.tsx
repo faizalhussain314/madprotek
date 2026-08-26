@@ -29,6 +29,11 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "MadProTek Corp",
     description: "Technology + Branding + Marketing + Events",
+  },
+  icons: {
+    icon: "/icon.png",
+    shortcut: "/favicon.ico",
+    apple: "/icon.png",
   }
 };
 
