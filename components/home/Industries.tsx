@@ -2,10 +2,11 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { CheckCircle2, ArrowRight } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 import Container from "../ui/Container";
 import SectionHeading from "../ui/SectionHeading";
 import Button from "../ui/Button";
+import { ScrollReveal } from "../ui/ScrollReveal";
 
 export default function Industries() {
   const industries = [
@@ -57,77 +58,83 @@ export default function Industries() {
   const activeIndustry = industries.find((i) => i.id === activeTab) || industries[0];
 
   return (
-    <section className="py-20 sm:py-28 bg-brand-off-white border-b border-brand-border">
+    <section className="py-20 sm:py-28 bg-brand-off-white border-b border-brand-border overflow-hidden">
       <Container>
-        <SectionHeading
-          eyebrow="INDUSTRIES & SOLUTIONS"
-          title="Built For Ambition"
-          subtitle="Specialized technical and branding frameworks tailored to vertical industry demands."
-          align="center"
-        />
+        <ScrollReveal direction="up">
+          <SectionHeading
+            eyebrow="INDUSTRIES & SOLUTIONS"
+            title="Built For Ambition"
+            subtitle="Specialized technical and branding frameworks tailored to vertical industry demands."
+            align="center"
+          />
+        </ScrollReveal>
 
-        {/* Tabs */}
-        <div className="flex flex-wrap items-center justify-center gap-2 mt-8 mb-12">
-          {industries.map((ind) => {
-            const isActive = ind.id === activeTab;
-            return (
-              <button
-                key={ind.id}
-                onClick={() => setActiveTab(ind.id)}
-                className={`px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
-                  isActive
-                    ? "bg-brand-black text-brand-yellow shadow-md"
-                    : "bg-white text-brand-gray hover:text-brand-black border border-brand-border"
-                }`}
-              >
-                {ind.name}
-              </button>
-            );
-          })}
-        </div>
+        {/* Tabs with on-appear animation */}
+        <ScrollReveal direction="up" delay={0.15}>
+          <div className="flex flex-wrap items-center justify-center gap-2 mt-8 mb-12">
+            {industries.map((ind) => {
+              const isActive = ind.id === activeTab;
+              return (
+                <button
+                  key={ind.id}
+                  onClick={() => setActiveTab(ind.id)}
+                  className={`px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+                    isActive
+                      ? "bg-brand-black text-brand-yellow shadow-md scale-105"
+                      : "bg-white text-brand-gray hover:text-brand-black border border-brand-border hover:border-brand-black/20"
+                  }`}
+                >
+                  {ind.name}
+                </button>
+              );
+            })}
+          </div>
+        </ScrollReveal>
 
-        {/* Content Card */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeTab}
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -15 }}
-            transition={{ duration: 0.25 }}
-            className="glass-card bg-white rounded-3xl border border-brand-border p-8 sm:p-12 shadow-sm max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-8 items-center"
-          >
-            <div className="md:col-span-7 space-y-4 text-left">
-              <span className="text-xs font-bold uppercase tracking-widest text-brand-yellow-dark">
-                {activeIndustry.name} Solution
-              </span>
-              <h3 className="text-2xl sm:text-3xl font-extrabold text-brand-black leading-tight">
-                {activeIndustry.title}
-              </h3>
-              <p className="text-sm text-brand-gray leading-relaxed">
-                {activeIndustry.description}
-              </p>
-              <div className="pt-2">
-                <Button href="/contact" variant="primary" showArrow size="sm">
-                  Discuss {activeIndustry.name} Strategy
-                </Button>
+        {/* Content Card with on-appear animation */}
+        <ScrollReveal direction="zoom" delay={0.2}>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeTab}
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -15 }}
+              transition={{ duration: 0.3 }}
+              className="glass-card bg-white rounded-3xl border border-brand-border p-8 sm:p-12 shadow-sm max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-8 items-center"
+            >
+              <div className="md:col-span-7 space-y-4 text-left">
+                <span className="text-xs font-bold uppercase tracking-widest text-brand-yellow-dark">
+                  {activeIndustry.name} Solution
+                </span>
+                <h3 className="text-2xl sm:text-3xl font-extrabold text-brand-black leading-tight">
+                  {activeIndustry.title}
+                </h3>
+                <p className="text-sm text-brand-gray leading-relaxed">
+                  {activeIndustry.description}
+                </p>
+                <div className="pt-2">
+                  <Button href="/contact" variant="primary" showArrow size="sm">
+                    Discuss {activeIndustry.name} Strategy
+                  </Button>
+                </div>
               </div>
-            </div>
 
-            <div className="md:col-span-5 bg-brand-black text-white rounded-2xl p-6 space-y-4">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-brand-yellow">
-                Core Deliverables
-              </h4>
-              <ul className="space-y-3">
-                {activeIndustry.points.map((pt) => (
-                  <li key={pt} className="flex items-center space-x-2.5 text-xs sm:text-sm text-gray-200">
-                    <CheckCircle2 className="h-4 w-4 text-brand-yellow shrink-0" />
-                    <span>{pt}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </motion.div>
-        </AnimatePresence>
+              <div className="md:col-span-5 bg-brand-black text-white rounded-2xl p-6 space-y-4 shadow-xl">
+                <h4 className="text-xs font-bold uppercase tracking-wider text-brand-yellow">
+                  Core Deliverables
+                </h4>
+                <ul className="space-y-3">
+                  {activeIndustry.points.map((pt) => (
+                    <li key={pt} className="flex items-center space-x-2.5 text-xs sm:text-sm text-gray-200">
+                      <CheckCircle2 className="h-4 w-4 text-brand-yellow shrink-0" />
+                      <span>{pt}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+        </ScrollReveal>
       </Container>
     </section>
   );

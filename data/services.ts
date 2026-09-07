@@ -96,24 +96,24 @@ export const servicesData: ServiceItem[] = [
     ]
   },
   {
-    id: "business-solutions",
+    id: "video-production",
     number: "05",
-    slug: "business-solutions",
-    title: "Business Solutions",
-    description: "Tailored CRM platforms, ERP integrations, and operational toolkits engineered to streamline organizational workflow.",
-    longDescription: "Off-the-shelf software rarely fits specialized workflows. We design custom internal tools, tracking dashboards, and automation rules aligned with your business processes.",
-    iconName: "Briefcase",
+    slug: "video-production",
+    title: "Video Production",
+    description: "Cinematic brand films, commercial ads, 3D motion graphics, product showcases, and high-impact event aftermovies.",
+    longDescription: "We bring stories to life through high-end video production. From visual concept scripting and 4K location shoots to 3D motion animation, color grading, and sound mastering, we produce video assets that captivate audiences.",
+    iconName: "Video",
     capabilities: [
-      "Custom CRM Development",
-      "ERP Data Synchronization",
-      "Internal Operations Dashboards",
-      "Process Automation Engines"
+      "Corporate Brand & Ad Films",
+      "3D Motion Graphics & VFX",
+      "Product Showcase Videos",
+      "Cinematic Event Aftermovies"
     ],
     features: [
-      "Role-based access permissions",
-      "Custom visual reporting tools",
-      "Seamless API integrations",
-      "Audit trail monitoring"
+      "4K Ultra-HD multicam filming",
+      "Professional scriptwriting & storyboards",
+      "Post-production color grading & sound mix",
+      "Multi-channel video ad formatting"
     ]
   },
   {

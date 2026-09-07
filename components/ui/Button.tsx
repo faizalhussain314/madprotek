@@ -10,6 +10,8 @@ interface ButtonProps {
   showArrow?: boolean;
   className?: string;
   href?: string;
+  target?: string;
+  rel?: string;
   onClick?: (e: React.MouseEvent<HTMLElement>) => void;
   type?: "button" | "submit" | "reset";
   disabled?: boolean;

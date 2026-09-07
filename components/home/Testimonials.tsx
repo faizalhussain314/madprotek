@@ -1,6 +1,9 @@
+"use client";
+
 import React from "react";
 import Container from "../ui/Container";
 import SectionHeading from "../ui/SectionHeading";
+import { ScrollReveal, StaggerContainer, StaggerItem } from "../ui/ScrollReveal";
 
 export default function Testimonials() {
   const testimonials = [
@@ -25,38 +28,39 @@ export default function Testimonials() {
   ];
 
   return (
-    <section className="py-20 sm:py-28 bg-brand-off-white border-b border-brand-border">
+    <section className="py-20 sm:py-28 bg-brand-off-white border-b border-brand-border overflow-hidden">
       <Container>
-        <SectionHeading
-          eyebrow="TESTIMONIALS"
-          title="What Our Clients Say"
-          subtitle="Feedback from organizations that rely on MadProTek for software, branding, and events."
-          align="center"
-        />
+        <ScrollReveal direction="up">
+          <SectionHeading
+            eyebrow="TESTIMONIALS"
+            title="What Our Clients Say"
+            subtitle="Feedback from organizations that rely on MadProTek for software, branding, and events."
+            align="center"
+          />
+        </ScrollReveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+        <StaggerContainer staggerDelay={0.15} className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
           {testimonials.map((item, idx) => (
-            <div
-              key={idx}
-              className="bg-white rounded-3xl border border-brand-border p-8 flex flex-col justify-between space-y-6 hover:border-brand-black transition-colors"
-            >
-              <div>
-                <span className="text-5xl font-black text-brand-yellow leading-none block mb-2">
-                  “
-                </span>
-                <p className="text-sm sm:text-base text-brand-black leading-relaxed font-medium">
-                  {item.quote}
-                </p>
+            <StaggerItem key={idx} direction="up" distance={35}>
+              <div className="bg-white rounded-3xl border border-brand-border p-8 flex flex-col justify-between space-y-6 hover:border-brand-black transition-all duration-300 hover:shadow-xl hover:-translate-y-1.5 h-full">
+                <div>
+                  <span className="text-5xl font-black text-brand-yellow leading-none block mb-2">
+                    “
+                  </span>
+                  <p className="text-sm sm:text-base text-brand-black leading-relaxed font-medium">
+                    {item.quote}
+                  </p>
+                </div>
+                <div className="pt-4 border-t border-brand-border">
+                  <p className="text-sm font-extrabold text-brand-black">{item.author}</p>
+                  <p className="text-xs font-semibold text-brand-muted">
+                    {item.role} • <span className="text-brand-black">{item.company}</span>
+                  </p>
+                </div>
               </div>
-              <div className="pt-4 border-t border-brand-border">
-                <p className="text-sm font-extrabold text-brand-black">{item.author}</p>
-                <p className="text-xs font-semibold text-brand-muted">
-                  {item.role} • <span className="text-brand-black">{item.company}</span>
-                </p>
-              </div>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
       </Container>
     </section>
   );

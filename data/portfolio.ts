@@ -27,6 +27,19 @@ export const portfolioData: PortfolioItem[] = [
     featured: true
   },
   {
+    id: "apex-video-commercial",
+    slug: "apex-video-commercial",
+    title: "Apex Motors Cinematic Commercial & 3D Reel",
+    category: "Video Production & Motion",
+    description: "High-octane 4K commercial ad film featuring custom 3D vehicle animation, visual graphics, sound design, and broadcast video masters.",
+    client: "Apex Electric Vehicles",
+    year: "2026",
+    image: "/images/portfolio/optimus-infinity.png",
+    url: "https://www.madprotek.com/work",
+    tags: ["Video Production", "Commercial Ad", "3D Motion", "VFX"],
+    featured: true
+  },
+  {
     id: "kadai2manai",
     slug: "kadai2manai",
     title: "Kadai2Manai Real Estate Marketplace",

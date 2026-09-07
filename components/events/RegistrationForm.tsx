@@ -2,9 +2,10 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, CheckCircle2, Loader2, Calendar, MapPin } from "lucide-react";
+import { ArrowLeft, CheckCircle2, Calendar, MapPin } from "lucide-react";
 import Button from "../ui/Button";
 import Container from "../ui/Container";
+import { ButtonSpinner } from "../ui/LoadingKit";
 
 interface RegistrationFormProps {
   event: {
@@ -58,19 +59,38 @@ export default function RegistrationForm({ event }: RegistrationFormProps) {
     return Object.keys(tempErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
 
     setIsSubmitting(true);
 
-    // Simulate API delay
-    setTimeout(() => {
+    try {
+      const res = await fetch("/api/registrations", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          eventId: event.slug,
+          eventTitle: event.title,
+          name: fullName,
+          email,
+          phone,
+          categorySelected: event.category,
+        }),
+      });
+
+      const data = await res.json();
+      if (data.success) {
+        setIsSuccess(true);
+        setRefNumber(data.data.bibNumber || "MPT-" + Math.floor(100000 + Math.random() * 900000));
+      } else {
+        alert(data.message || "Registration failed");
+      }
+    } catch (err: any) {
+      alert("Error submitting registration: " + err.message);
+    } finally {
       setIsSubmitting(false);
-      setIsSuccess(true);
-      const generatedRef = "MPT-" + Math.floor(100000 + Math.random() * 900000);
-      setRefNumber(generatedRef);
-    }, 1200);
+    }
   };
 
   return (
@@ -237,9 +257,9 @@ export default function RegistrationForm({ event }: RegistrationFormProps) {
               <div className="pt-4">
                 <Button type="submit" variant="primary" size="lg" disabled={isSubmitting} className="w-full">
                   {isSubmitting ? (
-                    <span className="flex items-center">
-                      <Loader2 className="animate-spin h-5 w-5 mr-2" />
-                      Processing Registration...
+                    <span className="flex items-center justify-center space-x-2">
+                      <ButtonSpinner size="md" color="border-brand-black" />
+                      <span>Processing Registration...</span>
                     </span>
                   ) : (
                     "Complete Registration"

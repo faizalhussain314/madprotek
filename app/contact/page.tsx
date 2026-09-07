@@ -16,10 +16,30 @@ export default function ContactPage() {
   const [message, setMessage] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (name && email && message) {
-      setSubmitted(true);
+      try {
+        const res = await fetch("/api/leads", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name,
+            email,
+            phone,
+            service,
+            message,
+          }),
+        });
+        const data = await res.json();
+        if (data.success) {
+          setSubmitted(true);
+        } else {
+          alert(data.message || "Failed to submit inquiry");
+        }
+      } catch (err: any) {
+        alert("Error submitting form: " + err.message);
+      }
     }
   };
 

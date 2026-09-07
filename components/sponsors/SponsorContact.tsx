@@ -1,9 +1,10 @@
 "use client";
 
 import React, { useState } from "react";
-import { Send, CheckCircle2, Loader2 } from "lucide-react";
+import { Send, CheckCircle2 } from "lucide-react";
 import Container from "../ui/Container";
 import Button from "../ui/Button";
+import { ButtonSpinner } from "../ui/LoadingKit";
 
 export default function SponsorContact() {
   const [fullName, setFullName] = useState("");
@@ -173,7 +174,7 @@ export default function SponsorContact() {
               <Button type="submit" variant="primary" size="lg" disabled={isSubmitting} className="w-full">
                 {isSubmitting ? (
                   <span className="inline-flex items-center justify-center space-x-2">
-                    <Loader2 className="animate-spin h-5 w-5" />
+                    <ButtonSpinner size="md" color="border-brand-black" />
                     <span>Submitting Inquiry...</span>
                   </span>
                 ) : (

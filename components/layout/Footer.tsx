@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -52,11 +54,11 @@ export default function Footer() {
           <div className="flex flex-col space-y-4">
             <Link href="/" className="inline-block group">
               <Image
-                src="/images/logo.png"
+                src="/images/full-logo-white.png"
                 alt="MadProTek Corp Logo"
-                width={160}
-                height={44}
-                className="h-10 w-auto object-contain"
+                width={200}
+                height={80}
+                className="h-11 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]"
               />
             </Link>
             <p className="text-brand-muted text-sm leading-relaxed max-w-xs">

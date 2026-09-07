@@ -55,14 +55,14 @@ export default function Navbar() {
       <div className="max-w-[1280px] mx-auto px-5 sm:px-8 md:px-12 flex items-center justify-between w-full h-[52px]">
         {/* LOGO */}
         <Link href="/" className="flex items-center space-x-3 group">
-          <div className="relative h-10 w-auto min-w-[130px] flex items-center">
+          <div className="relative h-9 sm:h-10 w-auto min-w-[140px] flex items-center">
             <Image
-              src="/images/logo-black.png"
+              src="/images/full-logo.png"
               alt="MadProTek Corp Logo"
-              width={160}
-              height={44}
+              width={190}
+              height={76}
               priority
-              className="h-10 w-auto object-contain"
+              className="h-9 sm:h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]"
             />
           </div>
         </Link>

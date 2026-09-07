@@ -33,6 +33,7 @@ export interface EventData {
   venue: string;
   address: string;
   mapEmbedUrlPlaceholder: string;
+  externalUrl?: string;
 }
 
 export const eventsData: EventData[] = [
